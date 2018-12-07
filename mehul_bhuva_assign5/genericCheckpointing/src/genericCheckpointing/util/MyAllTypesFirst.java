@@ -1,5 +1,5 @@
 package genericCheckpointing.util;
 
-public class MyAllTypesFirst {
+public class MyAllTypesFirst extends SerializableObject{
 
 }
