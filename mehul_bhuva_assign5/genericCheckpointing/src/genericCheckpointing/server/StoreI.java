@@ -1,12 +1,9 @@
 package genericCheckpointing.server;
 
-import genericCheckpointing.util.MyAllTypesFirst;
-import genericCheckpointing.util.MyAllTypesSecond;
+import genericCheckpointing.util.SerializableObject;
 
-public interface StoreI {
+public interface StoreI extends StoreRestoreI {
 
-	void writeObj(MyAllTypesFirst myFirst, int i, String string);
-
-	void writeObj(MyAllTypesSecond mySecond, int i, String string);
+	void writeObj(SerializableObject myAllTypes, int i, String string, String args);
 
 }

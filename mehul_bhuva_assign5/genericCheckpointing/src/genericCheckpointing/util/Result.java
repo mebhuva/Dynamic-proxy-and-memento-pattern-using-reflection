@@ -14,19 +14,20 @@ import java.util.ArrayList;
  */
 public class Result implements FileDisplayInterface {
 
-	ArrayList<String> ResultList = new ArrayList<>();
-
-	/**
-	 * Default Constructor
-	 */
+	private File file;
+	@Override
+	public void FileInitializer(String FileName)
+	{
+		file = new File(FileName);
+	}
 
 	@Override
-	public void writeFile(String FileName) {
+	public void writeFile(String OutputString) {
 		// TODO Auto-generated method stub
 		BufferedWriter writer = null;
 
 		try {
-			File file = new File(FileName);
+			
 			writer = new BufferedWriter(new FileWriter(file, true));// using buffered writer to write into the file
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -37,7 +38,8 @@ public class Result implements FileDisplayInterface {
 		try {
 			
 				try {
-					writer.write(FileName);
+					writer.write(OutputString);
+					writer.newLine();
 				} catch (IOException e) {
 					e.printStackTrace();
 				} finally {
@@ -59,39 +61,8 @@ public class Result implements FileDisplayInterface {
 
 	}
 
-	@Override
-	public void storeresult(String resultValue) {
-		this.ResultList.add(resultValue);
-	}
 
-	@Override
-	public String toString() {
-		return "Results [ResultList=" + ResultList + "]";
-	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ResultList == null) ? 0 : ResultList.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Result other = (Result) obj;
-		if (ResultList == null) {
-			if (other.ResultList != null)
-				return false;
-		} else if (!ResultList.equals(other.ResultList))
-			return false;
-		return true;
-	}
 }
 

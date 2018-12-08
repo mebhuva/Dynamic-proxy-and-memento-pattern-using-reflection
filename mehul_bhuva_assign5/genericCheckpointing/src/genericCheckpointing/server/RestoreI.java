@@ -2,7 +2,7 @@ package genericCheckpointing.server;
 
 import genericCheckpointing.util.SerializableObject;
 
-public interface RestoreI {
+public interface RestoreI extends StoreRestoreI {
 
 	SerializableObject readObj(String string);
 

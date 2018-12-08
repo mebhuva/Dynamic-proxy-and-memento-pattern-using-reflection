@@ -1,6 +1,9 @@
 
 package genericCheckpointing.driver;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import genericCheckpointing.server.RestoreI;
 import genericCheckpointing.server.StoreI;
 import genericCheckpointing.server.StoreRestoreI;
@@ -35,20 +38,14 @@ public class Driver {
 					.println("DEBUG_LEVEL : 0 - None, 1 - CONSTRUCTOR , 2 - EXCEPTION , 3 - STATECHANGE, 4 -  RESULT");
 			System.exit(0);
 		} else {
-			FileProcessor fp = new FileProcessor(args);// creating fileprocessor object
-			int checkinsert = fp.fileInputExists();// checking if insert file exists or not in the directory
-			if (checkinsert == 0) {
-				System.err.println("Insert File not found");
-				System.exit(0);
-			}
 			if (!isInteger(args[1])) {
 				System.err.println("NUM_OF_OBJECTS Value should be a number");
 				System.err.println(
 						"DEBUG_LEVEL : 0 - None, 1 - CONSTRUCTOR , 2 - EXCEPTION , 3 - STATECHANGE, 4 -  RESULT");
 				System.exit(0);
 			} else {
-				
 				FileDisplayInterface ResultsObject = new Result();
+				Random rnd = new Random();
 
 				ProxyCreator pc = new ProxyCreator();
 
@@ -62,8 +59,9 @@ public class Driver {
 				// FIXME: invoke a method on the handler instance to set the file name for
 				// checkpointFile and open the file
 
-				MyAllTypesFirst myFirst;
-				MyAllTypesSecond mySecond;
+				SerializableObject myFirst;
+				SerializableObject mySecond;
+				ArrayList<SerializableObject> SerializableObjectList = new ArrayList<>();
 
 				// Use an if/switch to proceed according to the command line argument
 				// For deser, just deserliaze the input file into the data structure and then
@@ -76,31 +74,31 @@ public class Driver {
 				// NUM_OF_OBJECTS refers to the count for each of MyAllTypesFirst and
 				// MyAllTypesSecond
 				// passed as "N" from the command line.
-
-				int NUM_OF_OBJECTS = 0;
-				for (int i = 0; i < NUM_OF_OBJECTS; i++) {
+				int NUM_OF_OBJECTS = Integer.parseInt(args[1]);
+				for (int i = 0; i < 2; i++) {
 
 					// FIXME: create these object instances correctly using an explicit value
 					// constructor
 					// use the index variable of this loop to change the values of the arguments to
 					// these constructors
-					myFirst = new MyAllTypesFirst();
-					mySecond = new MyAllTypesSecond();
-
+					//System.out.println(Math. random() * 100 + 11);
+					myFirst = new MyAllTypesFirst((int )(Math.random() *100 + 11),(long )(Math.random() *100 + 11),"My MATF String Number is "+(Math.random() *100 + 11),(Math.random() > .5),(int )(Math.random() *100 + 11));
+					mySecond = new MyAllTypesSecond((double )(Math.random() *100 + 11),(float)(Math.random() *100 + 11),(short)(Math.random() *100 + 11),(char) (rnd.nextInt(26) + 'a'));
+					SerializableObjectList.add(myFirst);
+					SerializableObjectList.add(mySecond);
 					// FIXME: store myFirst and mySecond in the data structure
 					// authID (13 and 17) is not being used in the assignment, but
 					// is left for future use.
-					((StoreI) cpointRef).writeObj(myFirst, 13, "XML");
-					((StoreI) cpointRef).writeObj(mySecond, 17, "XML");
+					((StoreI) cpointRef).writeObj(myFirst, rnd.nextInt(9998) + 1, "XML",args[2]);
+					((StoreI) cpointRef).writeObj(mySecond, rnd.nextInt(9996) + 3, "XML",args[2]);
 
 				}
-
-				SerializableObject myRecordRet;
+				//SerializableObject myRecordRet;
 
 				// create a data structure to store the returned ojects
 				for (int j = 0; j < 2 * NUM_OF_OBJECTS; j++) {
 
-					myRecordRet = ((RestoreI) cpointRef).readObj("XML");
+					//myRecordRet = ((RestoreI) cpointRef).readObj("XML");
 					// FIXME: store myRecordRet in the vector (or arrayList)
 				}
 
