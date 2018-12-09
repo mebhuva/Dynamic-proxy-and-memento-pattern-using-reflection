@@ -46,7 +46,7 @@ public class SerializeTypes {
 	}
 	public String serializechar(char value, String tagName)
 	{
-		String returnString =  "		<"+tagName+" xsi:type=\"xsd:short\">"+value+"</"+tagName+">";
+		String returnString =  "		<"+tagName+" xsi:type=\"xsd:char\">"+value+"</"+tagName+">";
 		return returnString;
 		
 	}

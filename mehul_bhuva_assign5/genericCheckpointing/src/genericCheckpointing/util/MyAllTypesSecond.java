@@ -5,6 +5,11 @@ public double myDouble = 0.0;
 public float myFloat = 0.0f;
 public short myShort = 0;
 public char myChar = '\0';
+
+public MyAllTypesSecond() {
+	super();
+	// TODO Auto-generated constructor stub
+}
 public MyAllTypesSecond(double myDouble, float myFloat, short myShort, char mychar) {
 	super();
 	this.myDouble = myDouble;
@@ -36,6 +41,12 @@ public char getMyChar() {
 public void setMyChar(char mychar) {
 	this.myChar = mychar;
 }
+@Override
+public String toString() {
+	return "MyAllTypesSecond [myDouble=" + myDouble + ", myFloat=" + myFloat + ", myShort=" + myShort + ", myChar="
+			+ myChar + "]";
+}
+	
 
 
 }

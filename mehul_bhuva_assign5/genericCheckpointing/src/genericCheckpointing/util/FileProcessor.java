@@ -24,10 +24,10 @@ public class FileProcessor {
 	 * 
 	 * @param args
 	 */
-	public FileProcessor(String[] args) {
+	public FileProcessor(String args) {
 
 		try {
-			this.input = new File(args[0]);
+			this.input = new File(args);
 			Bfreader = new BufferedReader(new FileReader(this.input));
 		} catch (IOException e) {
 			System.exit(0);
@@ -54,7 +54,7 @@ public class FileProcessor {
 	 * 
 	 * @return new line from input file.
 	 */
-	public synchronized String readLine() {
+	public String readLine() {
 		try {
 			String readLine = Bfreader.readLine();
 			return readLine;

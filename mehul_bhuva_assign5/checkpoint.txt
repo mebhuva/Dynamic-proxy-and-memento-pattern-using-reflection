@@ -1,0 +1,17 @@
+<DPSerialization>
+    <complexType xsi:type="genericCheckpointing.util.MyAllTypesFirst">
+		<myInt xsi:type="xsd:int">88</myInt>
+		<myLong xsi:type="xsd:long">90</myLong>
+		<myString xsi:type="xsd:String">My MATF String Number is 24.316808077067076</myString>
+		<myBool xsi:type="xsd:boolean">false</myBool>
+		<myOtherInt xsi:type="xsd:int">109</myOtherInt>
+    </complexType>
+</DPSerialization>
+<DPSerialization>
+    <complexType xsi:type="genericCheckpointing.util.MyAllTypesSecond">
+		<myDouble xsi:type="xsd:double">102.8085377645252</myDouble>
+		<myFloat xsi:type="xsd:float">102.99658</myFloat>
+		<myShort xsi:type="xsd:short">107</myShort>
+		<myChar xsi:type="xsd:char">i</myChar>
+    </complexType>
+</DPSerialization>

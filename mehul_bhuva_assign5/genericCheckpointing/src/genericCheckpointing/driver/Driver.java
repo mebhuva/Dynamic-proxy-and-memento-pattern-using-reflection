@@ -3,6 +3,8 @@ package genericCheckpointing.driver;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import genericCheckpointing.server.RestoreI;
 import genericCheckpointing.server.StoreI;
@@ -20,7 +22,7 @@ import genericCheckpointing.xmlStoreRestore.StoreRestoreHandler;
 
 public class Driver {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		// FIXME: read the value of checkpointFile from the command line
 
@@ -47,6 +49,9 @@ public class Driver {
 				FileDisplayInterface ResultsObject = new Result();
 				Random rnd = new Random();
 
+				SerializableObject myFirst;
+				SerializableObject mySecond;
+				ArrayList<SerializableObject> SerializableObjectList = new ArrayList<>();
 				ProxyCreator pc = new ProxyCreator();
 
 				// create an instance of StoreRestoreHandler (which implements
@@ -59,9 +64,6 @@ public class Driver {
 				// FIXME: invoke a method on the handler instance to set the file name for
 				// checkpointFile and open the file
 
-				SerializableObject myFirst;
-				SerializableObject mySecond;
-				ArrayList<SerializableObject> SerializableObjectList = new ArrayList<>();
 
 				// Use an if/switch to proceed according to the command line argument
 				// For deser, just deserliaze the input file into the data structure and then
@@ -75,7 +77,7 @@ public class Driver {
 				// MyAllTypesSecond
 				// passed as "N" from the command line.
 				int NUM_OF_OBJECTS = Integer.parseInt(args[1]);
-				for (int i = 0; i < 2; i++) {
+				for (int i = 0; i < 1; i++) {
 
 					// FIXME: create these object instances correctly using an explicit value
 					// constructor
@@ -94,13 +96,44 @@ public class Driver {
 
 				}
 				//SerializableObject myRecordRet;
-
+				ArrayList<SerializableObject> myRecordRet = new ArrayList<>();
+				
+				
+				
 				// create a data structure to store the returned ojects
-				for (int j = 0; j < 2 * NUM_OF_OBJECTS; j++) {
-
-					//myRecordRet = ((RestoreI) cpointRef).readObj("XML");
+				//Thread.sleep(1000);
+				String fileLine;
+				
+					myRecordRet = ((RestoreI) cpointRef).readObj("XML",args[2]);
+				
+					
+					int noofdismatch = 0;
+					
+					for(int i=0;i<SerializableObjectList.size();i++)
+					{
+						for(int j =i;j<myRecordRet.size();j++)
+						{
+							if(!(SerializableObjectList.get(i).equals(myRecordRet.get(j))))
+							{
+								noofdismatch = noofdismatch +1;;
+							}
+						}
+					}
+					
+					
+					System.out.println("SerializableObjectList");
+					for(int l =0;l<SerializableObjectList.size();l++)
+					{
+						System.out.println(SerializableObjectList.get(l).toString());
+					}
+					System.out.println("ReturnList");
+					for(int k =0;k<myRecordRet.size();k++)
+					{
+						System.out.println(myRecordRet.get(k).toString());
+					}
+					
 					// FIXME: store myRecordRet in the vector (or arrayList)
-				}
+				
 
 				// FIXME: invoke a method on the handler to close the file (if it hasn't already
 				// been closed)
@@ -124,6 +157,8 @@ public class Driver {
 		}
 	}
 
+	
+	
 	/**
 	 * isInteger check if string is integer or not
 	 * 
