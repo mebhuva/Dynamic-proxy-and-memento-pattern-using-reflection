@@ -77,7 +77,7 @@ public class Driver {
 				// MyAllTypesSecond
 				// passed as "N" from the command line.
 				int NUM_OF_OBJECTS = Integer.parseInt(args[1]);
-				for (int i = 0; i < 1; i++) {
+				for (int i = 0; i < NUM_OF_OBJECTS; i++) {
 
 					// FIXME: create these object instances correctly using an explicit value
 					// constructor

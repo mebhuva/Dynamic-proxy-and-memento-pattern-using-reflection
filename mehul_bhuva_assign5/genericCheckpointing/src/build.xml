@@ -1,4 +1,4 @@
-<project name="IsPrimeThreadPool" default="compile_all" basedir="..">
+<project name="genericCheckpointing" default="compile_all" basedir="..">
 
   <property name="BUILD.compiler"       value="modern"/>
   <property name="src"                  value="src"/>
@@ -8,7 +8,7 @@
   <target name="all" depends="compile_all"/>
 
   <target name="compile_all"
-          depends="IsPrimeThreadPool"/>
+          depends="genericCheckpointing"/>
 
   <target name="clean">
        <delete dir="${BUILD}"/>
@@ -22,9 +22,9 @@
 
  <target name="jar">
         <mkdir dir="${BUILD}/jar"/>
-        <jar destfile="${BUILD}/jar/IsPrimeThreadPool.jar" basedir="${BUILD}/classes">
+        <jar destfile="${BUILD}/jar/genericCheckpointing.jar" basedir="${BUILD}/classes">
             <manifest>
-                <attribute name="Main-Class" value="IsPrimeThreadPool.driver.Driver"/>
+                <attribute name="Main-Class" value="genericCheckpointing.driver.Driver"/>
             </manifest>
         </jar>
     </target>
@@ -33,9 +33,9 @@
   <!-- * means all files in the current directory -->
   <!-- for just java files use *.java -->
 
-  <target name="IsPrimeThreadPool" depends="prepare">
+  <target name="genericCheckpointing" depends="prepare">
     <javac includeantruntime="false" srcdir="${src}"
-	           includes="IsPrimeThreadPool/**"
+	           includes="genericCheckpointing/**"
            excludes="**/package.html"
            destdir="${classes}"
            classpath="${classes}"
@@ -45,10 +45,10 @@
   </target>
 
 <target name="run" depends="jar">
-        <java jar="${BUILD}/jar/IsPrimeThreadPool.jar"  fork="true">
+        <java jar="${BUILD}/jar/genericCheckpointing.jar"  fork="true">
 		<arg value="${arg0}"/>
 		<arg value="${arg1}"/>
-        <arg value="${arg2}"/>
+        	<arg value="${arg2}"/>
         </java>	
     </target>
 

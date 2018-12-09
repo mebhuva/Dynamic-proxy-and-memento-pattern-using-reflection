@@ -1,4 +1,4 @@
-# CSX42: Assignment 4
+# CSX42: Assignment 5
 ## Name: Mehul Bhuva
 
 -----------------------------------------------------------------------
@@ -6,12 +6,12 @@
 https://netjs.blogspot.com/2017/08/invoking-getters-and-setters-using-reflection-java.html
 
 Following are the commands and the instructions to run ANT on your project.
-#### Note: build.xml is present in airportSecurityState/src folder.
+#### Note: build.xml is present in genericCheckpointing/src folder.
 
 -----------------------------------------------------------------------
 ## Instruction to clean:
 
-####Command: ant -buildfile airportSecurityState/src/build.xml clean
+####Command: ant -buildfile genericCheckpointing/src/build.xml clean
 
 Description: It cleans up all the .class files that were generated when you
 compiled your code.
@@ -19,14 +19,14 @@ compiled your code.
 -----------------------------------------------------------------------
 ## Instruction to compile:
 
-####Command: ant -buildfile airportSecurityState/src/build.xml all
+####Command: ant -buildfile genericCheckpointing/src/build.xml all
 
 Description: Compiles your code and generates .class files inside the BUILD folder.
 
 -----------------------------------------------------------------------
 ## Instruction to run:
 
-####Command: ant -buildfile airportSecurityState/src/build.xml run -Darg0=input.txt -Darg1=output.txt -Darg2=DEBUG_LEVEL
+####Command: ant -buildfile genericCheckpointing/src/build.xml run -Darg0=mode -Darg1=NUM_OF_OBJECTS -Darg2=checkpoint.txt
 
 Note: Arguments accept the absolute path of the files.
 
@@ -36,19 +36,16 @@ Note: Arguments accept the absolute path of the files.
 
 Flow of the project:-
 
-1. Driver takes 3 arguments as input filename , output file name and debug level
-2. Driver checks if input file present or not
-3. Driver checks if debug level is in between the 0 to 4 and integer value 
-4. Driver calls reads file line by line and calls seurity factor to process line and calculate avgtraffc and acgprohibited items then this object pass to the airport context which set the state and add resilt string into the result object
-5. then after whole file processed and given result object to the mylogger which writes te result into the write file
-6. before writing it also check if file is empty or not
+1. Drivercalls proxy creator and use write ob ect and read object to invoke storerestore handler
+2. invoke method then calls overloaded method processInput wchich is used to serialize and writing to file and deserialize means reading from the file
+3. then we check if both the objects are same or not
 
 
 
 
 Data Structure: -
 
-ArrayList to store Days, Prohibited Items, Traveler and Result
+ArrayList to store Serializable objects
 
 
 Time complexity :- O(nlogn) 
@@ -63,6 +60,6 @@ I am involved in plagiarism or cheating an official form will be
 submitted to the Academic Honesty Committee of the Watson School to
 determine the action that needs to be taken. "
 
-Date: 11/11/2018
+Date: 12/09/2018
 
 
